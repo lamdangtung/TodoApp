@@ -3,6 +3,8 @@ package com.example.todoapp.data.models
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.todoapp.data.NoteDAO
+import com.example.todoapp.data.NoteDatabase
 import com.example.todoapp.utils.AppRandom
 import junit.framework.TestCase
 import kotlinx.coroutines.flow.count
