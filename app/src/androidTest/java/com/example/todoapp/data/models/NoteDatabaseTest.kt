@@ -3,7 +3,7 @@ package com.example.todoapp.data.models
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.todoapp.utils.AppRandom
+import com.example.todoapp.utils.AppUtils
 import junit.framework.TestCase
 import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.first
@@ -44,7 +44,7 @@ class NoteDatabaseTest : TestCase() {
     @Test
     fun testUpdateNote() {
         val newNote = createRandomNote()
-        val newContent = AppRandom.randomContent();
+        val newContent = AppUtils.randomContent();
         newNote.content = newContent
         runBlocking {
             val numberOfUpdatedNote = noteDAO.updateNote(newNote)
@@ -78,7 +78,7 @@ class NoteDatabaseTest : TestCase() {
 
     private fun createRandomNote(): Note = runBlocking {
         val now = Date()
-        val note = Note(AppRandom.randomTitle(), AppRandom.randomContent(), now, now, 0)
+        val note = Note(AppUtils.randomTitle(), AppUtils.randomContent(), now, now, 0)
 
         val newNoteId = noteDAO.createNote(note)
         val gotNote = noteDAO.getNoteById(newNoteId).take(1).first()
