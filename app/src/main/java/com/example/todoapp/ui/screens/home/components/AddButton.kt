@@ -12,13 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.todoapp.R
+import com.example.todoapp.ui.screens.Screen
 import com.example.todoapp.utils.AppUtils
 
 @Composable
-fun AddButton() {
+fun AddButton(navController: NavController) {
     Button(
-        onClick = {},
+        onClick = {
+            navController.navigate(Screen.Note.withArgs(10))
+        },
         modifier = Modifier
             .height(70.dp)
             .width(70.dp),
