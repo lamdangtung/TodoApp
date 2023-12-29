@@ -21,7 +21,7 @@ import com.example.todoapp.utils.AppUtils
 fun AddButton(navController: NavController) {
     Button(
         onClick = {
-            navController.navigate(Screen.Note.withArgs(10))
+            navController.navigate(Screen.Note.withArgs(-1))
         },
         modifier = Modifier
             .height(70.dp)

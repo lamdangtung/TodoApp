@@ -1,6 +1,5 @@
 package com.example.todoapp.data.models
 
-import androidx.compose.ui.unit.Constraints
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,7 +11,9 @@ import java.util.Date
 @Entity(tableName = AppConstraints.NOTE_TABLE)
 @TypeConverters(Converters::class)
 data class Note(
-
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long = 0,
     @ColumnInfo(name = "title")
     var title: String,
     @ColumnInfo(name = "content")
@@ -23,8 +24,4 @@ data class Note(
     var updatedAt: Date,
     @ColumnInfo(name = "status")
     var status: Int
-) {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Long = 0
-}
+)

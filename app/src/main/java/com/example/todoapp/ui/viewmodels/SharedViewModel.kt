@@ -12,99 +12,17 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
-val notes = listOf(
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-    Note(
-        title = AppUtils.randomTitle(),
-        content = AppUtils.randomContent(),
-        status = 0,
-        createdAt = Date(),
-        updatedAt = Date()
-    ),
-)
+val notes =
+    List(10) {
+        Note(
+            id = it.toLong(),
+            title = AppUtils.randomTitle(),
+            content = AppUtils.randomContent(),
+            status = 0,
+            createdAt = Date(),
+            updatedAt = Date()
+        );
+    }
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
@@ -120,6 +38,12 @@ class SharedViewModel @Inject constructor(
             repository.getAllNotes.collect {
                 _allNotes.value = notes
             }
+        }
+    }
+
+    fun getNoteById(noteId: Long): Note {
+        return _allNotes.value.first {
+            it.id == noteId
         }
     }
 

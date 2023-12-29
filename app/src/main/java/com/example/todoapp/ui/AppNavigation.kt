@@ -10,7 +10,6 @@ import com.example.todoapp.ui.screens.Screen
 import com.example.todoapp.ui.screens.detail_note.NoteScreen
 import com.example.todoapp.ui.screens.home.HomeScreen
 import com.example.todoapp.ui.viewmodels.SharedViewModel
-import com.example.todoapp.utils.AppConstraints
 
 @Composable
 fun AppNavigation(vm: SharedViewModel) {
@@ -33,7 +32,7 @@ fun AppNavigation(vm: SharedViewModel) {
 
         )) { param ->
 
-            NoteScreen(noteId = param.arguments?.getLong("noteId") ?: -1L)
+            NoteScreen(navController = navController, noteId = param.arguments?.getLong("noteId") ?: -1L, vm = vm)
         }
     }
 }
