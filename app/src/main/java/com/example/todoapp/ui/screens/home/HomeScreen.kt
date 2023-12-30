@@ -26,7 +26,7 @@ import com.example.todoapp.ui.viewmodels.SharedViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController, vm: SharedViewModel ) {
+fun HomeScreen(navController: NavController, vm: SharedViewModel) {
     LaunchedEffect(Unit) {
         vm.getAllNotes()
     }
@@ -43,7 +43,7 @@ fun HomeScreen(navController: NavController, vm: SharedViewModel ) {
                     Spacer(modifier = Modifier.height(36.dp))
                     LazyColumn {
                         items(allNotes) {
-                            NoteCard(navController = navController, note = it)
+                            NoteCard(navController = navController, note = it, vm = vm)
                         }
                     }
                 }
@@ -51,7 +51,8 @@ fun HomeScreen(navController: NavController, vm: SharedViewModel ) {
         },
         floatingActionButton = {
             AddButton(
-                navController = navController
+                navController = navController,
+                vm = vm
             )
         }
     )

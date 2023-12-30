@@ -35,6 +35,7 @@ fun HeaderNoteScreen(navController: NavController, vm: SharedViewModel) {
             Box(modifier = Modifier.weight(1.0f)) {
                 ActionButton(
                     onPressed = {
+                        vm.reset();
                         navController.popBackStack()
                     },
                     icon = painterResource(R.drawable.ic_back)

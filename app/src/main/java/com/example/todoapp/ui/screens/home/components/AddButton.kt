@@ -16,16 +16,22 @@ import androidx.navigation.NavController
 import com.example.todoapp.R
 import com.example.todoapp.data.enums.Action
 import com.example.todoapp.ui.screens.Screen
+import com.example.todoapp.ui.viewmodels.SharedViewModel
 import com.example.todoapp.utils.AppUtils
 
 @Composable
-fun AddButton(navController: NavController) {
+fun AddButton(navController: NavController, vm: SharedViewModel) {
     Button(
         onClick = {
-            navController.navigate(Screen.Note.withArgs(-1,  Action
-                .values()
-                .indexOf(Action.ADD)
-                .toLong()))
+            vm.onEnableAddMode()
+            navController.navigate(
+                Screen.Note.withArgs(
+                    -1, Action
+                        .values()
+                        .indexOf(Action.ADD)
+                        .toLong()
+                )
+            )
         },
         modifier = Modifier
             .height(70.dp)

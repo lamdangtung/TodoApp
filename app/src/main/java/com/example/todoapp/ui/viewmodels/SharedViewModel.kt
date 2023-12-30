@@ -93,7 +93,7 @@ class SharedViewModel @Inject constructor(
 
     fun init(action: Action, noteId: Long) {
         this.action.value = action;
-        if (action != Action.ADD && noteId != -1L) {
+        if (action != Action.ADD && noteId != -1L && action != Action.NOTHING) {
             currentNote.value = getNoteById(noteId)
         }
     }
@@ -103,6 +103,16 @@ class SharedViewModel @Inject constructor(
         title.value = ""
         content.value = ""
         isShowDialog.value = false
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch {
+            repository.deleteNote(note = note)
+        }
+    }
+
+    fun onEnableAddMode(): Unit {
+        this.action.value = Action.ADD
     }
 
 
