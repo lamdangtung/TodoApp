@@ -11,17 +11,20 @@ import java.util.Date
 @Entity(tableName = AppConstraints.NOTE_TABLE)
 @TypeConverters(Converters::class)
 data class Note(
+    @ColumnInfo(name = "title") var title: String,
+    @ColumnInfo(name = "content") var content: String,
+    @ColumnInfo(name = "created_at") val createdAt: Date,
+    @ColumnInfo(name = "updated_at") var updatedAt: Date,
+    @ColumnInfo(name = "status") var status: Int
+) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Long = 0,
-    @ColumnInfo(name = "title")
-    var title: String,
-    @ColumnInfo(name = "content")
-    var content: String,
-    @ColumnInfo(name = "created_at")
-    val createdAt: Date,
-    @ColumnInfo(name = "updated_at")
-    var updatedAt: Date,
-    @ColumnInfo(name = "status")
-    var status: Int
-)
+    var id: Long = 0
+}
+
+fun createEmptyNote(): Note {
+    return Note(
+        title = "", content = "", createdAt = Date(), // You may need to import java.util.Date
+        updatedAt = Date(), status = 0
+    )
+}

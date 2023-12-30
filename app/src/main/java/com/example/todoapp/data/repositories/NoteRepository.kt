@@ -1,7 +1,7 @@
 package com.example.todoapp.data.repositories
 
+import com.example.todoapp.data.NoteDAO
 import com.example.todoapp.data.models.Note
-import com.example.todoapp.data.models.NoteDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -11,8 +11,8 @@ class NoteRepository @Inject constructor(private val noteDAO: NoteDAO) {
         return noteDAO.getNoteById(noteId = noteId);
     }
 
-    suspend fun addNote(note: Note) {
-        noteDAO.createNote(note)
+    suspend fun addNote(note: Note): Long {
+        return noteDAO.createNote(note)
     }
 
     suspend fun updateNote(note: Note) {

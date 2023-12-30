@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.todoapp.R
+import com.example.todoapp.data.enums.Action
 import com.example.todoapp.ui.screens.Screen
 import com.example.todoapp.utils.AppUtils
 
@@ -21,7 +22,10 @@ import com.example.todoapp.utils.AppUtils
 fun AddButton(navController: NavController) {
     Button(
         onClick = {
-            navController.navigate(Screen.Note.withArgs(-1))
+            navController.navigate(Screen.Note.withArgs(-1,  Action
+                .values()
+                .indexOf(Action.ADD)
+                .toLong()))
         },
         modifier = Modifier
             .height(70.dp)
